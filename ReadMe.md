@@ -8,14 +8,14 @@ Below is the sample UI of how alchemy takes the smart contract address and parse
 # How to start
 For the ease of project isolation, all project dependency files were included in the `requirements.txt` 
 
-```
+```linux
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
 Once the setup is complete, run
-```
+```linux
 python3 data_analysis.py
 ```
 
