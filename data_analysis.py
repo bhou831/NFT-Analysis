@@ -43,9 +43,18 @@ def buyer_analysis(df):
     third = round2(top_3[2]*100/df.count().From)
     return[df.count().From, unique_pct, first, second, third]
 
+def ape_mint(df):
+    minted_df = df[df["Method"] == "Mint"]
+    return minted_df
+
+def mb_mint(df):
+    minted_df = df[df["Method"] == "Mint Public"]
+    return minted_df
+
 # helper functions 
 def round2(num):
     return str(round(num, 3))
+
 
 def generate_summary(name, avg, agg, buyer):
     print(f"""
@@ -72,20 +81,19 @@ if __name__=="__main__":
     jac_df = clean_data(jacked_ape)
     mb_df = clean_data(moonbirds)
 
+    jac_minted = ape_mint(jac_df)
+    moonbirds_minted = mb_mint(mb_df)
+
     print("#"*46)
     generate_summary('Jacked Ape Club', 
                     calc_avg_sale(jac_df), 
                     calc_percentage_change(aggregate_daily(jac_df)),
-                    buyer_analysis(jacked_ape))
+                    buyer_analysis(jac_minted))
 
     print("#"*48)
 
     generate_summary('Moonbirds', 
                     calc_avg_sale(mb_df), 
                     calc_percentage_change(aggregate_daily(mb_df)),
-                    buyer_analysis(mb_df))
+                    buyer_analysis(moonbirds_minted))
     
-
-
-
-# %%
